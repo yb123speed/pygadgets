@@ -1,9 +1,9 @@
 ﻿# coding:utf-8
+#!/usr/local/bin/python3
 
 import requests
 import os
 import re
-import urlparse
 from bs4 import BeautifulSoup
 import datetime
 import time
@@ -20,13 +20,13 @@ class SpideMan(object):
         host = 'http://www.mmjpg.com'
         start_url=self.parser(self.download(host))
         # start_url = 'http://www.mmjpg.com/mm/1530'
-        print 'start_url: %s' % start_url
+        print('start_url: %s' % start_url)
         dirs = os.listdir('./Images/mm')
         old_max_mm_id = max([int(i) for i in dirs])
         # old_max_mm_id = 1525
-        print 'old_max_mm_id: %s' % old_max_mm_id
+        print('old_max_mm_id: %s' % old_max_mm_id)
         stop_url = host+'/mm/%s'%old_max_mm_id
-        print 'stop_url: %s'% stop_url
+        print('stop_url: %s'% stop_url)
         # home_page_number = `1530`
         # while True:
         #     if home_page_number == 1 :
@@ -46,10 +46,6 @@ class SpideMan(object):
                 time.sleep(2)
                 date_time_mark = datetime.datetime.now()
         return
-            
-
-
-
 
     def download(self, url):
         '''
@@ -82,7 +78,7 @@ class SpideMan(object):
         if len(ref_arr)==5:
             ref_arr.append('1')
         dir_url = './Images/'+ref_arr[3]+'/'+ ref_arr[4]+'/'
-        print 'image_url: %s' % url
+        print('image_url: %s' % url)
         if not os.path.exists(dir_url): 
             os.makedirs(dir_url)
         response = requests.get(url, headers=headers)
@@ -90,7 +86,7 @@ class SpideMan(object):
         with open(filename, 'wb') as f:
             f.write(response.content)
             f.flush()
-        print '%s downloaded.' % filename
+        print('%s downloaded.' % filename)
         self.old_img_urls.add(url)
 
     def parser(self, html_content):
@@ -106,7 +102,6 @@ class SpideMan(object):
         self.download_image(link['src'], referer)
         link1 =soup.find('a', href=re.compile(r'http://www.mmjpg.com/mm/\d+'))
         return link1
-
 
 
 if __name__ == "__main__":
