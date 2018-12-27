@@ -51,7 +51,7 @@ class SpideMan(object):
         '''
         下载Html
         '''
-        if url is None and url not in old_urls:
+        if url is None and url not in self.old_urls:
             return None
         user_agent = 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML,\
          like Gecko) Chrome/62.0.3202.94 Safari/537.36'
