@@ -54,7 +54,7 @@ def char2png(file_name, font, scale=1):
     dr = ImageDraw.Draw(im_txt)
     font=ImageFont.load_default().font
     x=y=0
-    # font_h *=1 #调整后更佳
+    font_h *=1.37 #调整后更佳
     #ImageDraw为每个ascii码进行上色
     for i in range(len(txt)):
         if(txt[i]=='\n'):
