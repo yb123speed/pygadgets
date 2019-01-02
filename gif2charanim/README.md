@@ -11,3 +11,6 @@
 根据灰度值将ASCII字符串映射到对应的单元，同时记录每个单元原来的RGB
 
 创建字符画对象，将ASCII写入到对应单元，并用记录的RGB数值填充将生成的字符画合成GIF动图
+
+cmd:
+    `python main.py gifName -d=0.2`
