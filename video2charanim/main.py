@@ -1,4 +1,5 @@
 #-*- coding:utf-8 -*-
+#!/usr/local/bin/python3
 
 import numpy as np
 
@@ -59,5 +60,47 @@ def img2chars(img):
         res.append(line)
     return res
 
-# if __name__ == "__main__":
-#     video2imgs(r"I:\pygadgets\video2charanim\BadApple.mp4",(360,270))
+def imgs2chars(imgs):
+    video_chars = []
+    for img in imgs:
+        video_chars.append(img2chars(img))
+    return video_chars
+
+def play_video(video_chars):
+    """
+    播放字符视频
+    :param video_chars: 字符画的列表，每个元素为一帧
+    ：return: None
+    """
+    # 导入需要的模块
+    import time,curses
+
+    # 获取字符画的尺寸
+    width, height = len(video_chars[0][0]), len(video_chars[0])
+
+    # 初始化curses
+    stdscr = curses.initscr()
+    curses.start_color()
+    try:
+        #调整窗口大小，宽度最好略大于字符画宽度。另外注意curses的height和width的顺序
+        stdscr.resize(height, width*2)
+        
+        for pic_i in range(len(video_chars)):
+            # 显示pic_i，即第1帧字符画
+            for line_i in range(height):
+                # 将pic_i的第1行写入第i列。(line_i, 0)表示从第i行的开头开始写入。最后一个参数设置字符为白色
+                stdscr.addstr(line_i, 0, video_chars[pic_i][line_i], curses.COLOR_WHITE)
+            stdscr.refresh() # 写入后需要refres才会立即更新界面
+
+            time.sleep( 1/ 24) # 粗略地控制播放速度。更精确的方式是使用游戏编程里，精灵的概念
+    finally:
+        # curses 使用前要初始化，用完后无论有没有异常，都要关闭
+        curses.endwin()
+    return
+
+if __name__ == "__main__":
+    import sys
+    imgs = video2imgs(sys.path[0]+"\BadApple.mp4",(64, 48))
+    video_chars = imgs2chars(imgs)
+    input("转换完成！按Enter键开始播放")
+    play_video(video_chars)
