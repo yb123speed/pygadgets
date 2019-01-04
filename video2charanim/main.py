@@ -1,5 +1,6 @@
 #-*- coding:utf-8 -*-
 #!/usr/local/bin/python3
+# whl包对应python3.6平台
 
 import numpy as np
 
