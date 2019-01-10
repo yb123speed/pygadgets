@@ -1,6 +1,6 @@
 #-*- coding:utf-8 -*-
 #!/usr/local/bin/python3
-# whl包对应python3.6平台
+# whl包对应python3.7平台 https://www.lfd.uci.edu/~gohlke/pythonlibs/#curses
 
 import numpy as np
 
