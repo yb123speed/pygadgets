@@ -21,3 +21,7 @@ class VideoSpider(object):
             print("正在抓取文件：" + file_name)
             with open(file_name, "wb") as f:
                 f.write(response.content)
+
+if __name__ == "__main__":
+    spider = VideoSpider()
+    spider.start_request()
