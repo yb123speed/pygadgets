@@ -12,4 +12,12 @@ class VideoSpider(object):
             self.xpath_data(html)
 
     def xpath_data(self,html):
-        pass
+        src_list = html.xpath('//div[@class="video-play"]/video/@src')
+        tit_list = html.xpath('//span[@class="video-title"]/text()')
+        for src, tit in zip(src_list, tit_list):
+            url = "http:" + src
+            file_name = tit + ".mp4"
+            response = requests.get(url)
+            print("正在抓取文件：" + file_name)
+            with open(file_name, "wb") as f:
+                f.write(response.content)
