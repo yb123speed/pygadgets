@@ -13,6 +13,6 @@ print('start listening ...')
 while 1:
     # 获取链接IP和端口
     conn, addr = s.accept()
-    print('['+addr[0]+':'+str(addr[1])+'] send a message to me: '+conn.recv(1024))
-    conn.sendall('I received a message from ['+addr[0]+':'+str(addr[1])+']')
+    print('['+str(addr[0])+':'+str(addr[1])+'] send a message to me: '+ str(conn.recv(1024),encoding='utf-8'))
+    conn.sendall(bytearray('I received a message from ['+addr[0]+':'+str(addr[1])+']',encoding="utf-8"))
 s.close()
