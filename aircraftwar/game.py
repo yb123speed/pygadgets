@@ -12,3 +12,6 @@ SCREEN_HEIGHT = 800
 pygame.init()
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption('飞机大战')
+
+while True:
+    pass
