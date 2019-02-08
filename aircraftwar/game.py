@@ -24,3 +24,8 @@ while True:
     screen.blit(background, (0, 0))
     # 更新屏幕
     pygame.display.update()
+    # 处理游戏退出
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            exit()
