@@ -16,8 +16,6 @@ pygame.display.set_caption('飞机大战')
 # 载入背景图
 background = pygame.image.load(r'I:\pygadgets\aircraftwar\resources\image\background.png')
 
-print(background)
-
 while True:
     # 绘制背景
     screen.fill(0)
