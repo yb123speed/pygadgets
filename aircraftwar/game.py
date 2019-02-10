@@ -17,7 +17,7 @@ pygame.display.set_caption('飞机大战')
 background = pygame.image.load(r'I:\pygadgets\aircraftwar\resources\image\background.png')
 
 # 载入飞机图片
-plane_img = pygame.image.load('resources/image/shoot.png')
+plane_img = pygame.image.load(r'I:\pygadgets\aircraftwar\resources\image\shoot.png')
   
 # 选择飞机在大图片中的位置，并生成subsurface，然后初始化飞机开始的位置
 player_rect = pygame.Rect(0, 99, 102, 126)
@@ -28,6 +28,10 @@ while True:
     # 绘制背景
     screen.fill(0)
     screen.blit(background, (0, 0))
+
+    # 绘制飞机
+    screen.blit(player, player_pos)
+    
     # 更新屏幕
     pygame.display.update()
     # 处理游戏退出
