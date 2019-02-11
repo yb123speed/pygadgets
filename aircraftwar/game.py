@@ -220,6 +220,15 @@ while True:
     player.bullets.draw(screen)
     # 显示敌机
     enemies1.draw(screen)
+
+    # 绘制得分
+    score_font = pygame.font.Font(None, 36)
+    score_text = score_font.render(str(score), True, (128, 128, 128))
+    text_rect = score_text.get_rect()
+    text_rect.topleft = [10, 10]
+    screen.blit(score_text, text_rect)
+
+
     # 监听键盘事件
     key_pressed = pygame.key.get_pressed()
     if key_pressed[K_UP]:
