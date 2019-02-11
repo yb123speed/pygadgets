@@ -64,7 +64,10 @@ clock = pygame.time.Clock()
 # 判断游戏循环退出的参数
 running = True
 
+# 游戏主循环
 while True:
+    # 控制游戏最大帧率为60
+    clock.tick(60)
     # 绘制背景
     screen.fill(0)
     screen.blit(background, (0, 0))
