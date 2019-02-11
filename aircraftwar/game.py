@@ -68,6 +68,16 @@ running = True
 while True:
     # 控制游戏最大帧率为60
     clock.tick(60)
+
+    # 生成子弹，需要控制发射频率
+    # 首先判断玩家飞机没有被击中
+    if not player.is_hit:
+        if shoot_frequency % 15 == 0:
+            player.shoot(bullet_img)
+        shoot_frequency += 1
+        if shoot_frequency >= 15:
+            shoot_frequency = 0
+
     # 绘制背景
     screen.fill(0)
     screen.blit(background, (0, 0))
