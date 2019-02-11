@@ -30,6 +30,10 @@ player_rect.append(pygame.Rect(432, 624, 102, 126))
 player_pos = [200, 600]
 player = Player(plane_img, player_rect, player_pos)
 
+# 子弹图片
+bullet_rect = pygame.Rect(1004, 987, 9, 21)
+bullet_img = plane_img.subsurface(bullet_rect)
+
 while True:
     # 绘制背景
     screen.fill(0)
