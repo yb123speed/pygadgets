@@ -14,15 +14,21 @@ screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption('飞机大战')
 
 # 载入背景图
-background = pygame.image.load(r'I:\pygadgets\aircraftwar\resources\image\background.png')
+background = pygame.image.load(r'I:\pygadgets\aircraftwar\resources\image\background.png').convert()
 
 # 载入飞机图片
 plane_img = pygame.image.load(r'I:\pygadgets\aircraftwar\resources\image\shoot.png')
   
-# 选择飞机在大图片中的位置，并生成subsurface，然后初始化飞机开始的位置
-player_rect = pygame.Rect(0, 99, 102, 126)
-player = plane_img.subsurface(player_rect)
+# 设置玩家飞机不同状态的图片列表，多张图片展示为动画效果
+player_rect = []
+player_rect.append(pygame.Rect(0, 99, 102, 126))        # 玩家飞机图片
+player_rect.append(pygame.Rect(165, 360, 102, 126))
+player_rect.append(pygame.Rect(165, 234, 102, 126))     # 玩家爆炸图片
+player_rect.append(pygame.Rect(330, 624, 102, 126))
+player_rect.append(pygame.Rect(330, 498, 102, 126))
+player_rect.append(pygame.Rect(432, 624, 102, 126))
 player_pos = [200, 600]
+player = Player(plane_img, player_rect, player_pos)
 
 while True:
     # 绘制背景
