@@ -90,6 +90,9 @@ pygame.display.set_caption('飞机大战')
 # 载入背景图
 background = pygame.image.load(r'I:\pygadgets\aircraftwar\resources\image\background.png').convert()
 
+# Game Over的背景图
+game_over = pygame.image.load(r'I:\pygadgets\aircraftwar\resources\image\gameover.png')
+
 # 载入飞机图片
 plane_img = pygame.image.load(r'I:\pygadgets\aircraftwar\resources\image\shoot.png')
   
@@ -139,7 +142,7 @@ clock = pygame.time.Clock()
 running = True
 
 # 游戏主循环
-while True:
+while running:
     # 控制游戏最大帧率为60
     clock.tick(60)
 
@@ -199,6 +202,8 @@ while True:
     else:
         # 玩家飞机被击中后的效果处理
         player.img_index = player_down_index / 8
+        if player.img_index>5:
+            player.img_index=5
         screen.blit(player.image[int(player.img_index)], player.rect)
         player_down_index += 1
         if player_down_index > 47:
