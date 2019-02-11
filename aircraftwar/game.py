@@ -213,9 +213,13 @@ while True:
             enemies_down.remove(enemy_down)
             score += 1000
             continue
-        screen.blit(enemy_down.down_imgs[enemy_down.down_index / 2], enemy_down.rect)
+        screen.blit(enemy_down.down_imgs[int(enemy_down.down_index / 2)], enemy_down.rect)
         enemy_down.down_index += 1
 
+    # 显示子弹
+    player.bullets.draw(screen)
+    # 显示敌机
+    enemies1.draw(screen)
     # 监听键盘事件
     key_pressed = pygame.key.get_pressed()
     if key_pressed[K_UP]:
