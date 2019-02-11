@@ -205,6 +205,17 @@ while True:
             # 击中效果处理完成后游戏结束
             running = False
 
+    # 敌机被子弹击中效果显示
+    for enemy_down in enemies_down:
+        if enemy_down.down_index == 0:
+            pass
+        if enemy_down.down_index > 7:
+            enemies_down.remove(enemy_down)
+            score += 1000
+            continue
+        screen.blit(enemy_down.down_imgs[enemy_down.down_index / 2], enemy_down.rect)
+        enemy_down.down_index += 1
+
     # 监听键盘事件
     key_pressed = pygame.key.get_pressed()
     if key_pressed[K_UP]:
