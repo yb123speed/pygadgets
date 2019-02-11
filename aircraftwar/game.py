@@ -228,23 +228,41 @@ while True:
     text_rect.topleft = [10, 10]
     screen.blit(score_text, text_rect)
 
-
-    # 监听键盘事件
-    key_pressed = pygame.key.get_pressed()
-    if key_pressed[K_UP]:
-        player_pos[1] -= 3
-    if key_pressed[K_DOWN]:
-        player_pos[1] += 3
-    if key_pressed[K_LEFT]:
-        player_pos[0] -= 3
-    if key_pressed[K_RIGHT]:
-        player_pos[0] += 3
-
     # 更新屏幕
     pygame.display.update()
+
     # 处理游戏退出
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
+            
+    # 获取键盘事件（上下左右按键）
+    key_pressed = pygame.key.get_pressed()
 
+    # 处理键盘事件（移动飞机的位置）
+    if key_pressed[K_w] or key_pressed[K_UP]:
+        player.moveUp()
+    if key_pressed[K_s] or key_pressed[K_DOWN]:
+        player.moveDown()
+    if key_pressed[K_a] or key_pressed[K_LEFT]:
+        player.moveLeft()
+    if key_pressed[K_d] or key_pressed[K_RIGHT]:
+        player.moveRight()
+
+# 游戏Game Over后显示最终得分
+font = pygame.font.Font(None, 48)
+text = font.render('Score: '+ str(score), True, (255, 0, 0))
+text_rect = text.get_rect()
+text_rect.centerx = screen.get_rect().centerx
+text_rect.centery = screen.get_rect().centery + 24
+screen.blit(game_over, (0, 0))
+screen.blit(text, text_rect)
+
+# 显示得分并处理游戏退出
+while 1:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            exit()
+    pygame.display.update()
