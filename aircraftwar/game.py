@@ -187,13 +187,23 @@ while True:
     for enemy_down in enemies1_down:
         enemies_down.add(enemy_down)
 
-
     # 绘制背景
     screen.fill(0)
     screen.blit(background, (0, 0))
 
-    # 绘制飞机
-    screen.blit(player, player_pos)
+    # 绘制玩家飞机
+    if not player.is_hit:
+        screen.blit(player.image[player.img_index], player.rect)
+        # 更换图片索引使飞机有动画效果
+        player.img_index = shoot_frequency / 8
+    else:
+        # 玩家飞机被击中后的效果处理
+        player.img_index = player_down_index / 8
+        screen.blit(player.image[player.img_index], player.rect)
+        player_down_index += 1
+        if player_down_index > 47:
+            # 击中效果处理完成后游戏结束
+            running = False
 
     # 监听键盘事件
     key_pressed = pygame.key.get_pressed()
