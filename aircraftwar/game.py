@@ -193,13 +193,13 @@ while True:
 
     # 绘制玩家飞机
     if not player.is_hit:
-        screen.blit(player.image[player.img_index], player.rect)
+        screen.blit(player.image[int(player.img_index)], player.rect)
         # 更换图片索引使飞机有动画效果
-        player.img_index = shoot_frequency / 8
+        player.img_index = int(shoot_frequency / 8)
     else:
         # 玩家飞机被击中后的效果处理
         player.img_index = player_down_index / 8
-        screen.blit(player.image[player.img_index], player.rect)
+        screen.blit(player.image[int(player.img_index)], player.rect)
         player_down_index += 1
         if player_down_index > 47:
             # 击中效果处理完成后游戏结束
