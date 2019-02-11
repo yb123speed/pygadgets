@@ -161,6 +161,26 @@ while True:
     if enemy_frequency >= 100:
         enemy_frequency = 0
 
+    for bullet in player.bullets:
+        # 以固定速度移动子弹
+        bullet.move()
+        # 移动出屏幕后删除子弹
+        if bullet.rect.bottom < 0:
+            player.bullets.remove(bullet)   
+
+    for enemy in enemies1:
+        #2. 移动敌机
+        enemy.move()
+        #3. 敌机与玩家飞机碰撞效果处理
+        if pygame.sprite.collide_circle(enemy, player):
+            enemies_down.add(enemy)
+            enemies1.remove(enemy)
+            player.is_hit = True
+            break
+        #4. 移动出屏幕后删除飞机    
+        if enemy.rect.top < 0:
+            enemies1.remove(enemy)
+
     # 绘制背景
     screen.fill(0)
     screen.blit(background, (0, 0))
