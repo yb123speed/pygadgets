@@ -43,6 +43,27 @@ enemy1_down_imgs.append(plane_img.subsurface(pygame.Rect(873, 697, 57, 43)))
 enemy1_down_imgs.append(plane_img.subsurface(pygame.Rect(267, 296, 57, 43)))
 enemy1_down_imgs.append(plane_img.subsurface(pygame.Rect(930, 697, 57, 43)))
 
+enemies1 = pygame.sprite.Group()
+
+# 存储被击毁的飞机，用来渲染击毁动画
+enemies_down = pygame.sprite.Group()
+
+# 初始化射击及敌机移动频率
+shoot_frequency = 0
+enemy_frequency = 0
+
+# 玩家飞机被击中后的效果处理
+player_down_index = 16
+
+# 初始化分数
+score = 0
+
+# 游戏循环帧率设置
+clock = pygame.time.Clock()
+
+# 判断游戏循环退出的参数
+running = True
+
 while True:
     # 绘制背景
     screen.fill(0)
